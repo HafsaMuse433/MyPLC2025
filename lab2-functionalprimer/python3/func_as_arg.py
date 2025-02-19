@@ -1,10 +1,11 @@
-def listFunc():
-    return [i for i in range(1, 6)] #Create list of ints from 1 to 5, Haskell equivalent [1..5]
+# A more general version of func_as_arg.py that works for a set of ints between a and b
+def listFunc(a, b):
+    return [i for i in range(a, b + 1)]  # Create list of ints from a to b, Haskell equivalent [a..b]
 
-def applicatorFunc(inpFunc, s):
-    if s=='s':
-        return sum(inpFunc())
+def applicatorFunc(inpFunc, s, a, b):
+    if s == 's':
+        return sum(inpFunc(a, b))
     else:
-        return sum(inpFunc())/5
+        return sum(inpFunc(a, b)) / (b - a + 1)
 
-print(applicatorFunc(listFunc, 's'))
+print(applicatorFunc(listFunc, 'a', 1, 10))
