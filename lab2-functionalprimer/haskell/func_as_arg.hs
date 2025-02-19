@@ -1,13 +1,15 @@
+-- Create inpFunc
+inpFunc :: Int -> Int -> [Int]
+inpFunc a b = [a..b]
 
---create inpFunc
-inpFunc = a b = [a..b]
-
---Define applicatorFunc
-applicatorFunc inpFunc a b s = 
+-- Define applicatorFunc
+applicatorFunc :: (Int -> Int -> [Int]) -> Int -> Int -> Char -> Double
+applicatorFunc inpFunc a b s =
     if s == 's' 
-        then sum (inpFunc a b) 
-        else (sum (inpFunc a b)) / (b - a + 1)
+        then fromIntegral (sum (inpFunc a b)) 
+        else fromIntegral (sum (inpFunc a b)) / fromIntegral (b - a + 1)
 
+main :: IO ()
 main = do
-    let result = applicatorFunc inpFunc 1 10 "s" --Call applicatorFunc with inpFunc and 'a' as args
-    putStrLn("sum = " ++ show(result))
+    let result = applicatorFunc inpFunc 1 10 's' -- Call applicatorFunc with inpFunc, integers, and char as args
+    putStrLn ("sum = " ++ show result)
